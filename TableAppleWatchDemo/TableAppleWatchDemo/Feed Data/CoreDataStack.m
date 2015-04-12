@@ -26,6 +26,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
+        
         NSBundle *bundle = [NSBundle mainBundle];
         NSURL *modelURL = [bundle URLForResource:@"data" withExtension:@"momd"];
         self.model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];

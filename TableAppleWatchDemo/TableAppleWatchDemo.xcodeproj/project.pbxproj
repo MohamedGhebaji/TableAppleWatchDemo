@@ -26,6 +26,7 @@
 		D99582A11AD991B7009B14F0 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D99582A01AD991B7009B14F0 /* MasterViewController.m */; };
 		D99582A41AD991C1009B14F0 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D99582A31AD991C1009B14F0 /* DetailViewController.m */; };
 		D99582A71AD991CD009B14F0 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D99582A61AD991CD009B14F0 /* SettingsViewController.m */; };
+		D9DA5DF31ADB1A4F00D15519 /* PostRowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9DA5DF21ADB1A4F00D15519 /* PostRowController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,8 @@
 		D99582A31AD991C1009B14F0 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		D99582A51AD991CD009B14F0 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		D99582A61AD991CD009B14F0 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		D9DA5DF11ADB1A4F00D15519 /* PostRowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostRowController.h; sourceTree = "<group>"; };
+		D9DA5DF21ADB1A4F00D15519 /* PostRowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostRowController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +196,8 @@
 		D94F42041AD97E5500194AE0 /* TableAppleWatchDemo WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				D9DA5DF11ADB1A4F00D15519 /* PostRowController.h */,
+				D9DA5DF21ADB1A4F00D15519 /* PostRowController.m */,
 				D94F42081AD97E5500194AE0 /* InterfaceController.h */,
 				D94F42091AD97E5500194AE0 /* InterfaceController.m */,
 				D94F420E1AD97E5500194AE0 /* Images.xcassets */,
@@ -439,6 +444,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9DA5DF31ADB1A4F00D15519 /* PostRowController.m in Sources */,
 				D94F420A1AD97E5500194AE0 /* InterfaceController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

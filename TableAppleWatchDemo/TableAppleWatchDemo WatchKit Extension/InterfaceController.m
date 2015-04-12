@@ -10,6 +10,7 @@
 
 
 @interface InterfaceController()
+@property (weak, nonatomic) IBOutlet WKInterfaceTable *table;
 
 @end
 
@@ -25,6 +26,8 @@
 - (void)willActivate {
     // This method is called when watch view controller is about to be visible to user
     [super willActivate];
+    
+    [self.table insertRowsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 20)] withRowType:@"PostRowType"];
 }
 
 - (void)didDeactivate {
