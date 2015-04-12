@@ -7,9 +7,12 @@
 //
 
 #import "AppDelegate.h"
+#import "MasterViewController.h"
+#import "DetailViewController.h"
+#import "CoreDataStack.h"
 
 @interface AppDelegate ()
-
+@property (nonatomic, strong) CoreDataStack *coreDataStack;
 @end
 
 @implementation AppDelegate
@@ -17,6 +20,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    self.coreDataStack = [[CoreDataStack alloc] init];
+    
+    UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
+    UINavigationController *navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count - 1];
+    navigationController.topViewController.navigationItem.leftBarButtonItem = [splitViewController displayModeButtonItem];
+    splitViewController.delegate = self;
+    
+    UINavigationController *masterNavigationController = splitViewController.viewControllers[0];
+    MasterViewController *controller = (MasterViewController *)masterNavigationController.topViewController;
+    controller.managedObjectContext = self.coreDataStack.context;
+    
     return YES;
 }
 
@@ -28,10 +43,13 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    [self.coreDataStack saveContext];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -40,6 +58,23 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    
+    [self.coreDataStack saveContext];
+}
+
+#pragma mark - UISplitViewControllerDelegate
+- (BOOL)splitViewController:(UISplitViewController *)splitViewController collapseSecondaryViewController:(UIViewController *)secondaryViewController ontoPrimaryViewController:(UIViewController *)primaryViewController {
+    
+    if ([secondaryViewController isKindOfClass:[UINavigationController class]]) {
+        if ([[(UINavigationController *)secondaryViewController topViewController] isKindOfClass:[DetailViewController class]]) {
+            DetailViewController *topAsDetailController = (DetailViewController *)[(UINavigationController *)secondaryViewController topViewController];
+            if (topAsDetailController.detailItem == nil) {
+                return YES;
+            }
+        }
+    }
+    
+    return NO;
 }
 
 @end

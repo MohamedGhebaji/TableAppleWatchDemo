@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Notification - TableAppleWatchDemo WatchKit App.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>TableAppleWatchDemo WatchKit App.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>TableAppleWatchDemo.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -18,6 +28,11 @@
 			<true/>
 		</dict>
 		<key>D94F41EE1AD96C7A00194AE0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D94F42111AD97E5500194AE0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
