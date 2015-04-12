@@ -26,7 +26,11 @@
 		D99582A11AD991B7009B14F0 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D99582A01AD991B7009B14F0 /* MasterViewController.m */; };
 		D99582A41AD991C1009B14F0 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D99582A31AD991C1009B14F0 /* DetailViewController.m */; };
 		D99582A71AD991CD009B14F0 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D99582A61AD991CD009B14F0 /* SettingsViewController.m */; };
+		D9B5F2611ADB261D001EF62B /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = D94F42321AD980CC00194AE0 /* Post.m */; };
+		D9B5F2621ADB3095001EF62B /* data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D94F422C1AD9803300194AE0 /* data.xcdatamodeld */; };
+		D9B5F2631ADB318B001EF62B /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = D94F422F1AD9805800194AE0 /* data.plist */; };
 		D9DA5DF31ADB1A4F00D15519 /* PostRowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9DA5DF21ADB1A4F00D15519 /* PostRowController.m */; };
+		D9F919FE1ADB22C700B1B0E8 /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = D94F422A1AD9801B00194AE0 /* CoreDataStack.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -400,6 +404,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9B5F2631ADB318B001EF62B /* data.plist in Resources */,
 				D94F420F1AD97E5500194AE0 /* Images.xcassets in Resources */,
 				D94F42131AD97E5500194AE0 /* TableAppleWatchDemo WatchKit App.app in Resources */,
 			);
@@ -446,6 +451,9 @@
 			files = (
 				D9DA5DF31ADB1A4F00D15519 /* PostRowController.m in Sources */,
 				D94F420A1AD97E5500194AE0 /* InterfaceController.m in Sources */,
+				D9B5F2621ADB3095001EF62B /* data.xcdatamodeld in Sources */,
+				D9F919FE1ADB22C700B1B0E8 /* CoreDataStack.m in Sources */,
+				D9B5F2611ADB261D001EF62B /* Post.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

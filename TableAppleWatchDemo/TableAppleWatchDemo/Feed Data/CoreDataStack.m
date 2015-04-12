@@ -21,32 +21,38 @@
 
 @implementation CoreDataStack
 
-#pragma mark - Life Cycle
+#pragma mark - Public Methods
 
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        
-        NSBundle *bundle = [NSBundle mainBundle];
-        NSURL *modelURL = [bundle URLForResource:@"data" withExtension:@"momd"];
-        self.model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-        
-        self.psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.model];
-        
-        self.context = [[NSManagedObjectContext alloc] init];
-        self.context.persistentStoreCoordinator = self.psc;
-        
-        NSError *error;
-        self.store = [self.psc addPersistentStoreWithType:NSInMemoryStoreType configuration:nil URL:nil options:nil error:&error];
-        
-    }
++ (instancetype)sharedManager {
+    static id sharedInstance = nil;
     
-    [self _loadStarterData];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+      
+        sharedInstance = [[self alloc] init];
+        
+    });
     
-    return self;
+    return sharedInstance;
 }
 
-#pragma mark - Public Methods
+- (void)createContetxt {
+    
+    NSBundle *bundle = [NSBundle mainBundle];
+    NSURL *modelURL = [bundle URLForResource:@"data" withExtension:@"momd"];
+    self.model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    
+    self.psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.model];
+    
+    self.context = [[NSManagedObjectContext alloc] init];
+    self.context.persistentStoreCoordinator = self.psc;
+    
+    NSError *error;
+    self.store = [self.psc addPersistentStoreWithType:NSInMemoryStoreType configuration:nil URL:nil options:nil error:&error];
+
+    [self _loadStarterData];
+}
+
 - (void)saveContext {
     NSError *error;
     if ([self.context hasChanges] && ![self.context save:&error]) {
@@ -54,8 +60,29 @@
     }
 }
 
+- (NSArray *)allPosts {
+    NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:@"Post"];
+    fetch.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO]];
+    NSArray *result = [self.context executeFetchRequest:fetch error:NULL];
+    if (result && result.count > 0) {
+        return result;
+    }
+    
+    return @[];
+}
+
+- (Post *)mostRecentPost {
+    NSArray *results = [self allPosts];
+    if (results && results.count > 0) {
+        return [results firstObject];
+    }
+    
+    return nil;
+}
+
 #pragma mark - Private Methods
 - (void)_loadStarterData {
+    
     NSURL *plistURL = [[NSBundle bundleForClass:[CoreDataStack class]] URLForResource:@"data" withExtension:@"plist"];
     if (plistURL) {
         NSArray *starterDataArray = [NSArray arrayWithContentsOfURL:plistURL];
@@ -83,26 +110,6 @@
     }
     
     [self saveContext];
-}
-
-- (NSArray *)allPosts {
-    NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:@"Post"];
-    fetch.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO]];
-    NSArray *result = [self.context executeFetchRequest:fetch error:NULL];
-    if (result && result.count > 0) {
-        return result;
-    }
-    
-    return @[];
-}
-
-- (Post *)mostRecentPost {
-    NSArray *results = [self allPosts];
-    if (results && results.count > 0) {
-        return [results firstObject];
-    }
-    
-    return nil;
 }
 
 @end

@@ -10,7 +10,11 @@
 #import <CoreData/CoreData.h>
 
 @interface CoreDataStack : NSObject
-
 @property (nonatomic, strong) NSManagedObjectContext *context;
+
++ (instancetype)sharedManager;
+- (void)createContetxt;
 - (void)saveContext;
+- (NSArray *)allPosts;
+
 @end

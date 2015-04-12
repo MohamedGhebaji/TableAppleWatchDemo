@@ -21,7 +21,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    self.coreDataStack = [[CoreDataStack alloc] init];
+    self.coreDataStack = [CoreDataStack sharedManager];
+    [self.coreDataStack createContetxt];
     
     UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
     UINavigationController *navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count - 1];
